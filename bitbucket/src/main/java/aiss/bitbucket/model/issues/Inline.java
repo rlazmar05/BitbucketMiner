@@ -10,62 +10,49 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "type",
-        "links",
-        "name",
-        "id"
+        "from",
+        "to",
+        "path"
 })
-public class IssueIds {
+public class Inline {
 
-    @JsonProperty("type")
-    private String type;
-    @JsonProperty("links")
-    private Links links;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("from")
+    private Integer from;
+    @JsonProperty("to")
+    private Integer to;
+    @JsonProperty("path")
+    private String path;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("type")
-    public String getType() {
-        return type;
+    @JsonProperty("from")
+    public Integer getFrom() {
+        return from;
     }
 
-    @JsonProperty("type")
-    public void setType(String type) {
-        this.type = type;
+    @JsonProperty("from")
+    public void setFrom(Integer from) {
+        this.from = from;
     }
 
-    @JsonProperty("links")
-    public Links getLinks() {
-        return links;
+    @JsonProperty("to")
+    public Integer getTo() {
+        return to;
     }
 
-    @JsonProperty("links")
-    public void setLinks(Links links) {
-        this.links = links;
+    @JsonProperty("to")
+    public void setTo(Integer to) {
+        this.to = to;
     }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("path")
+    public String getPath() {
+        return path;
     }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
-    }
-
-    @JsonProperty("id")
-    public void setId(Integer id) {
-        this.id = id;
+    @JsonProperty("path")
+    public void setPath(String path) {
+        this.path = path;
     }
 
     @JsonAnyGetter
@@ -81,22 +68,18 @@ public class IssueIds {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(IssueIds.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("type");
+        sb.append(Inline.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("from");
         sb.append('=');
-        sb.append(((this.type == null)?"<null>":this.type));
+        sb.append(((this.from == null)?"<null>":this.from));
         sb.append(',');
-        sb.append("links");
+        sb.append("to");
         sb.append('=');
-        sb.append(((this.links == null)?"<null>":this.links));
+        sb.append(((this.to == null)?"<null>":this.to));
         sb.append(',');
-        sb.append("name");
+        sb.append("path");
         sb.append('=');
-        sb.append(((this.name == null)?"<null>":this.name));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
+        sb.append(((this.path == null)?"<null>":this.path));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');

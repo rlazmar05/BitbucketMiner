@@ -10,42 +10,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "type",
-        "links",
-        "name",
-        "id"
+        "href",
+        "name"
 })
-public class IssueIds {
+public class Code {
 
-    @JsonProperty("type")
-    private String type;
-    @JsonProperty("links")
-    private Links links;
+    @JsonProperty("href")
+    private String href;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("id")
-    private Integer id;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("type")
-    public String getType() {
-        return type;
+    @JsonProperty("href")
+    public String getHref() {
+        return href;
     }
 
-    @JsonProperty("type")
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @JsonProperty("links")
-    public Links getLinks() {
-        return links;
-    }
-
-    @JsonProperty("links")
-    public void setLinks(Links links) {
-        this.links = links;
+    @JsonProperty("href")
+    public void setHref(String href) {
+        this.href = href;
     }
 
     @JsonProperty("name")
@@ -56,16 +40,6 @@ public class IssueIds {
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
-    }
-
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
-    }
-
-    @JsonProperty("id")
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @JsonAnyGetter
@@ -81,22 +55,14 @@ public class IssueIds {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(IssueIds.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("type");
+        sb.append(Code.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("href");
         sb.append('=');
-        sb.append(((this.type == null)?"<null>":this.type));
-        sb.append(',');
-        sb.append("links");
-        sb.append('=');
-        sb.append(((this.links == null)?"<null>":this.links));
+        sb.append(((this.href == null)?"<null>":this.href));
         sb.append(',');
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
-        sb.append(',');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null)?"<null>":this.id));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
