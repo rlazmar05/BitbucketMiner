@@ -2,6 +2,9 @@ package aiss.bitbucket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class BitbucketApplication {
@@ -11,5 +14,5 @@ public class BitbucketApplication {
 	}
 
 	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {return builder.build(): }
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {return builder.build(); }
 }
