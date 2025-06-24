@@ -1,13 +1,11 @@
+package aiss.bitbucket.model.commits;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.Generated;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import com.fasterxml.jackson.annotation.*;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -32,7 +30,7 @@ public class AllCommits {
     @JsonProperty("repository")
     private Repository repository;
     @JsonProperty("links")
-    private Links__1 links;
+    private Links links;
     @JsonProperty("author")
     private Author author;
     @JsonProperty("summary")
@@ -81,12 +79,12 @@ public class AllCommits {
     }
 
     @JsonProperty("links")
-    public Links__1 getLinks() {
+    public Links getLinks() {
         return links;
     }
 
     @JsonProperty("links")
-    public void setLinks(Links__1 links) {
+    public void setLinks(Links links) {
         this.links = links;
     }
 

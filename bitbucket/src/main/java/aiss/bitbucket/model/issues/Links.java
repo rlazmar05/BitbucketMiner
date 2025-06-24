@@ -1,6 +1,10 @@
+package aiss.bitbucket.model.issues;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.annotation.Generated;
+
+import aiss.bitbucket.model.comments.Comment;
+import aiss.bitbucket.model.commits.Html;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,7 +28,7 @@ public class Links {
     @JsonProperty("html")
     private Html html;
     @JsonProperty("comments")
-    private Comments comments;
+    private Comment comments;
     @JsonProperty("attachments")
     private Attachments attachments;
     @JsonProperty("watch")
@@ -55,12 +59,12 @@ public class Links {
     }
 
     @JsonProperty("comments")
-    public Comments getComments() {
+    public Comment getComments() {
         return comments;
     }
 
     @JsonProperty("comments")
-    public void setComments(Comments comments) {
+    public void setComments(Comment comments) {
         this.comments = comments;
     }
 

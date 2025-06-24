@@ -1,6 +1,8 @@
+package aiss.bitbucket.model.commits;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.annotation.Generated;
+import aiss.bitbucket.model.User;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;

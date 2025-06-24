@@ -1,6 +1,7 @@
+package aiss.bitbucket.model.commits;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,7 +22,7 @@ public class Parent {
     @JsonProperty("hash")
     private String hash;
     @JsonProperty("links")
-    private Links__3 links;
+    private Links links;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -46,12 +47,12 @@ public class Parent {
     }
 
     @JsonProperty("links")
-    public Links__3 getLinks() {
+    public Links getLinks() {
         return links;
     }
 
     @JsonProperty("links")
-    public void setLinks(Links__3 links) {
+    public void setLinks(Links links) {
         this.links = links;
     }
 

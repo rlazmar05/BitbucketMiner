@@ -15,7 +15,6 @@ public class Comment {
     @Id
     @JsonProperty("id")
     private String id;
-    @JsonProperty("body")
     @NotEmpty(message = "The message cannot be empty.")
     @Column(columnDefinition="TEXT")
     private String body;

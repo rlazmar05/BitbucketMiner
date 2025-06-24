@@ -1,6 +1,7 @@
+package aiss.bitbucket.model.issues;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -8,29 +9,44 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "href",
-        "name"
+        "type",
+        "links",
+        "name",
+        "id"
 })
-public class Html {
+public class IssueIds {
 
-    @JsonProperty("href")
-    private String href;
+    @JsonProperty("type")
+    private String type;
+    @JsonProperty("links")
+    private Links links;
     @JsonProperty("name")
     private String name;
+    @JsonProperty("id")
+    private Integer id;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("href")
-    public String getHref() {
-        return href;
+    @JsonProperty("type")
+    public String getType() {
+        return type;
     }
 
-    @JsonProperty("href")
-    public void setHref(String href) {
-        this.href = href;
+    @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @JsonProperty("links")
+    public Links getLinks() {
+        return links;
+    }
+
+    @JsonProperty("links")
+    public void setLinks(Links links) {
+        this.links = links;
     }
 
     @JsonProperty("name")
@@ -41,6 +57,16 @@ public class Html {
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
+    }
+
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
+    }
+
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @JsonAnyGetter
@@ -56,14 +82,22 @@ public class Html {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Html.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("href");
+        sb.append(IssueIds.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append("type");
         sb.append('=');
-        sb.append(((this.href == null)?"<null>":this.href));
+        sb.append(((this.type == null)?"<null>":this.type));
+        sb.append(',');
+        sb.append("links");
+        sb.append('=');
+        sb.append(((this.links == null)?"<null>":this.links));
         sb.append(',');
         sb.append("name");
         sb.append('=');
         sb.append(((this.name == null)?"<null>":this.name));
+        sb.append(',');
+        sb.append("id");
+        sb.append('=');
+        sb.append(((this.id == null)?"<null>":this.id));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');

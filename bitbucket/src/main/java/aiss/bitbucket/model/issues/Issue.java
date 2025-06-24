@@ -2,7 +2,7 @@
 package aiss.bitbucket.model.issues;
 
 import aiss.bitbucket.model.User;
-import aiss.bitbucket.model.comments.Comment;
+import main.java.aiss.bitbucket.model.comments.Comment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
