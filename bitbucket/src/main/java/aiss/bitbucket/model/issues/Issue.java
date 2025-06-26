@@ -1,8 +1,7 @@
-
 package aiss.bitbucket.model.issues;
 
 import aiss.bitbucket.model.User;
-import main.java.aiss.bitbucket.model.comments.Comment;
+import aiss.bitbucket.model.comments.Comment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -15,38 +14,53 @@ public class Issue {
     @Id
     @JsonProperty("id")
     private String id;
+
     @JsonProperty("title")
     private String title;
-    @JsonProperty("description")
-    @Column(columnDefinition="TEXT")
-    private String description;
+
+    @Transient // Este campo lo usamos solo al parsear JSON
+    @JsonProperty("content")
+    private Content content;
+
     @JsonProperty("state")
     private String state;
 
-    @JsonProperty("created_at")
+    @JsonProperty("created_on")
     private String createdAt;
-    @JsonProperty("updated_at")
+
+    @JsonProperty("updated_on")
     private String updatedAt;
-    @JsonProperty("closed_at")
+
+    @JsonProperty("closed_on")
     private String closedAt;
-    @JsonProperty("labels")
+
+    @JsonProperty("kind")
+    private String kind;
+
+    @Transient
+    private String description;
+
     @ElementCollection
     private List<String> labels;
+
     @JsonProperty("author")
-    //@NotEmpty(message = "The author of the issue cannot be empty")
-    @JoinColumn(name = "author_id",referencedColumnName = "id")
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
     private User author;
+
     @JsonProperty("assignee")
-    @JoinColumn(name = "assignee_id",referencedColumnName = "id")
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "assignee_id", referencedColumnName = "id")
     private User assignee;
+
     @JsonProperty("votes")
     private Integer votes;
-    @JsonProperty("comments")
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "issueId")
     private List<Comment> comments;
+
+    // Getters y Setters
 
     public String getId() {
         return id;
@@ -64,12 +78,12 @@ public class Issue {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public Content getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(Content content) {
+        this.content = content;
     }
 
     public String getState() {
@@ -102,6 +116,22 @@ public class Issue {
 
     public void setClosedAt(String closedAt) {
         this.closedAt = closedAt;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getDescription() {
+        return content != null ? content.getRaw() : null;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<String> getLabels() {
@@ -146,62 +176,20 @@ public class Issue {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Issue.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("id");
-        sb.append('=');
-        sb.append(((this.id == null) ? "<null>" : this.id));
-        sb.append(',');
-        sb.append("title");
-        sb.append('=');
-        sb.append(((this.title == null) ? "<null>" : this.title));
-        sb.append(',');
-        sb.append("description");
-        sb.append('=');
-        sb.append(((this.description == null) ? "<null>" : this.description));
-        sb.append(',');
-        sb.append("state");
-        sb.append('=');
-        sb.append(((this.state == null) ? "<null>" : this.state));
-        sb.append(',');
-        sb.append("createdAt");
-        sb.append('=');
-        sb.append(((this.createdAt == null) ? "<null>" : this.createdAt));
-        sb.append(',');
-        sb.append("updatedAt");
-        sb.append('=');
-        sb.append(((this.updatedAt == null) ? "<null>" : this.updatedAt));
-        sb.append(',');
-        sb.append("closedAt");
-        sb.append('=');
-        sb.append(((this.closedAt == null) ? "<null>" : this.closedAt));
-        sb.append(',');
-        sb.append("labels");
-        sb.append('=');
-        sb.append(((this.labels == null) ? "<null>" : this.labels));
-        sb.append(',');
-        sb.append("author");
-        sb.append('=');
-        sb.append(((this.author == null) ? "<null>" : this.author));
-        sb.append(',');
-        sb.append("assignee");
-        sb.append('=');
-        sb.append(((this.assignee == null) ? "<null>" : this.assignee));
-        sb.append(',');
-        sb.append("votes");
-        sb.append('=');
-        sb.append(((this.votes == null) ? "<null>" : this.votes));
-        sb.append(',');
-        sb.append("comments");
-        sb.append('=');
-        sb.append(((this.comments == null) ? "<null>" : this.comments));
-        sb.append(',');
-
-        if (sb.charAt((sb.length() - 1)) == ',') {
-            sb.setCharAt((sb.length() - 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Issue{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", state='" + state + '\'' +
+                ", createdOn='" + createdAt + '\'' +
+                ", updatedOn='" + updatedAt + '\'' +
+                ", closedOn='" + closedAt + '\'' +
+                ", kind='" + kind + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", labels=" + labels +
+                ", author=" + author +
+                ", assignee=" + assignee +
+                ", votes=" + votes +
+                ", comments=" + comments +
+                '}';
     }
 }

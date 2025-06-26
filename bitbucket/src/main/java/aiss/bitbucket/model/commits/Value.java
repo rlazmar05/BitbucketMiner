@@ -1,80 +1,84 @@
 package aiss.bitbucket.model.commits;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "type",
-        "commit"
+        "hash",
+        "message",
+        "date",
+        "author",
+        "parents"
 })
 public class Value {
 
-    @JsonProperty("type")
-    private String type;
-    @JsonProperty("commit")
-    private Commit commit;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
+    @JsonProperty("hash")
+    private String hash;
 
-    @JsonProperty("type")
-    public String getType() {
-        return type;
+    @JsonProperty("message")
+    private String message;
+
+    @JsonProperty("date")
+    private String date;
+
+    @JsonProperty("author")
+    private Author author;
+
+    @JsonProperty("parents")
+    private List<Parent> parents;
+
+    public String getHash() {
+        return hash;
     }
 
-    @JsonProperty("type")
-    public void setType(String type) {
-        this.type = type;
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 
-    @JsonProperty("commit")
-    public Commit getCommit() {
-        return commit;
+    public String getMessage() {
+        return message;
     }
 
-    @JsonProperty("commit")
-    public void setCommit(Commit commit) {
-        this.commit = commit;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public String getDate() {
+        return date;
     }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public List<Parent> getParents() {
+        return parents;
+    }
+
+    public void setParents(List<Parent> parents) {
+        this.parents = parents;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(Value.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("type");
-        sb.append('=');
-        sb.append(((this.type == null)?"<null>":this.type));
-        sb.append(',');
-        sb.append("commit");
-        sb.append('=');
-        sb.append(((this.commit == null)?"<null>":this.commit));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "Value{" +
+                "hash='" + hash + '\'' +
+                ", message='" + message + '\'' +
+                ", date='" + date + '\'' +
+                ", author=" + author +
+                ", parents=" + parents +
+                '}';
     }
-
 }

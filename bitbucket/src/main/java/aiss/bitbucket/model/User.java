@@ -22,6 +22,8 @@ public class User {
     private String avatarUrl;
     @JsonProperty("web_url")
     private String webUrl;
+    @JsonProperty("display_name")
+    private String displayName;
 
     public String getId() {
         return id;
@@ -62,6 +64,10 @@ public class User {
     public void setWebUrl(String webUrl) {
         this.webUrl = webUrl;
     }
+
+    public String getDisplayName() { return displayName; }
+
+    public void setDisplayName(String displayName) { this.displayName = displayName; }
 
     @Override
     public String toString() {

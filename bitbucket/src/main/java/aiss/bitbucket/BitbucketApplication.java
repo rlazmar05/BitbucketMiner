@@ -1,4 +1,4 @@
-package main.java.aiss.bitbucket;
+package aiss.bitbucket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
