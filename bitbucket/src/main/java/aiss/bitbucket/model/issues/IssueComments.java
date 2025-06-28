@@ -4,15 +4,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import aiss.bitbucket.model.User;
-import aiss.bitbucket.model.issues.Inline;
+import aiss.bitbucket.model.bitbucketdto.BitbucketUser;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import javax.swing.text.AbstractDocument;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -25,7 +23,8 @@ import javax.swing.text.AbstractDocument;
         "deleted",
         "inline",
         "links",
-        "issue"
+        "issue",
+        "bitbucketUser"
 })
 public class IssueComments {
 
@@ -49,6 +48,8 @@ public class IssueComments {
     private Links links;
     @JsonProperty("issue")
     private Issue issue;
+    @JsonProperty("BitbucketUser")
+    private BitbucketUser bitbucketUser;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
