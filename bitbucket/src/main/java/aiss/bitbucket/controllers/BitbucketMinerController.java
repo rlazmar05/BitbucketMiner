@@ -2,8 +2,7 @@ package aiss.bitbucket.controllers;
 
 import aiss.bitbucket.model.commits.Commit;
 import aiss.bitbucket.model.issues.Issue;
-import aiss.bitbucket.service.BitbucketService;
-import aiss.bitbucket.service.GitHubService;
+import aiss.bitbucket.service.*;
 import aiss.bitbucket.service.GitHubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +21,12 @@ public class BitbucketMinerController {
     @Autowired
     private GitHubService gitHubService;
 
+    @Autowired
+    private CommitService commitService;
+
+    @Autowired
+    private IssueService issueService;
+
     @PostMapping("/{workspace}/{repo_slug}")
     public String fetchAndSendData(
             @PathVariable String workspace,
@@ -30,8 +35,8 @@ public class BitbucketMinerController {
             @RequestParam(defaultValue = "5") int nIssues,
             @RequestParam(defaultValue = "2") int maxPages) {
 
-        List<Commit> commits = bitbucketService.getAllCommits(workspace, repo_slug, nCommits, maxPages);
-        List<Issue> issues = bitbucketService.getAllIssues(workspace, repo_slug, nIssues, maxPages);
+        List<Commit> commits = commitService.getAllCommits(workspace, repo_slug, nCommits, maxPages);
+        List<Issue> issues = issueService.getAllIssues(workspace, repo_slug, nIssues, maxPages);
 
         bitbucketService.sendDataToGitMiner(commits, issues);
 
@@ -47,8 +52,8 @@ public class BitbucketMinerController {
             @RequestParam(defaultValue = "2") int maxPages) {
 
         Map<String, Object> preview = new HashMap<>();
-        preview.put("commits", bitbucketService.getAllCommits(workspace, repo_slug, nCommits, maxPages));
-        preview.put("issues", bitbucketService.getAllIssues(workspace, repo_slug, nIssues, maxPages));
+        preview.put("commits", commitService.getAllCommits(workspace, repo_slug, nCommits, maxPages));
+        preview.put("issues", issueService.getAllIssues(workspace, repo_slug, nIssues, maxPages));
         return preview;
     }
 

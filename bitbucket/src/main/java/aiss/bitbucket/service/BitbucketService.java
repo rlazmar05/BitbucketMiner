@@ -1,58 +1,27 @@
 package aiss.bitbucket.service;
 
 import aiss.bitbucket.model.commits.Commit;
-import aiss.bitbucket.model.comments.Comment;
 import aiss.bitbucket.model.issues.Issue;
-import aiss.bitbucket.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class BitbucketService {
 
     @Autowired
-    CommitService commitService;
-    @Autowired
-    IssueService issueService;
-    @Autowired
-    CommentService commentService;
+    RestTemplate restTemplate;
 
-    public Project getProjectData(String workspace, String repo_slug, int nCommits, int nIssues, int maxPages) {
-        Project project = new Project();
+    private static final String BASE_URL = "http://localhost:8080/bitbucketminer";
 
-        project.setId(workspace + "/" + repo_slug);
-        project.setName(repo_slug);
-        project.setWebUrl("https://bitbucket.org/" + workspace + "/" + repo_slug);
-
-        //COMMITS
-        List<Commit> commits = commitService.getAllCommits(workspace, repo_slug, nCommits, maxPages);
-        if (commits != null) {
-            project.setCommits(commits);
-        } else {
-            project.setCommits(Collections.emptyList());
+    public void sendDataToGitMiner(List<Commit> commits, List<Issue> issues) {
+        for (Commit commit : commits) {
+            restTemplate.postForObject(BASE_URL + "/commits", commit, Void.class);
         }
-
-        //ISSUES
-        List<Issue> issues = issueService.getAllIssues(workspace, repo_slug, nIssues, maxPages);
-        List<Issue> processedIssues = new ArrayList<>();
-
-        if (issues != null) {
-            for (Issue issue : issues) {
-                // Añadir comentarios (si no se añadieron ya en el issueService)
-                List<Comment> comments = commentService.getAllCommentsFromIssue(workspace, repo_slug, issue.getId());
-                issue.setComments(comments != null ? comments : Collections.emptyList());
-
-                processedIssues.add(issue);
-            }
-            project.setIssues(processedIssues);
-        } else {
-            project.setIssues(Collections.emptyList());
+        for (Issue issue : issues) {
+            restTemplate.postForObject(BASE_URL + "/issues", issue, Void.class);
         }
-
-        return project;
     }
 }
