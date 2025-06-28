@@ -3,6 +3,7 @@ package aiss.bitbucket.model;
 
 import aiss.bitbucket.model.commits.Commit;
 import aiss.bitbucket.model.issues.Issue;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -12,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity
-@Table(name = "Project")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Project {
 
     @Id
@@ -28,8 +28,6 @@ public class Project {
     @NotEmpty(message = "The URL of the project cannot be empty")
     public String webUrl;
     @JsonProperty("commits")
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "projectId")
     private List<Commit> commits;
 
     @JsonProperty("issues")

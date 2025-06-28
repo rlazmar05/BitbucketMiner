@@ -11,12 +11,12 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class GitHubService {
+public class BitBucketService {
 
     @Autowired
     RestTemplate restTemplate;
 
-    private static final String BASE_URL = "https://api.github.com/repos/";
+    private static final String BASE_URL = "https://api.bitbucket.org/2.0/repositories/";
 
     public List<Commit> getAllCommits(String workspace, String repo_slug) {
         String uri = BASE_URL + workspace + "/" + repo_slug + "/commits";
