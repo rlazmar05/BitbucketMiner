@@ -18,8 +18,8 @@ public class GitHubService {
 
     private static final String BASE_URL = "https://api.github.com/repos/";
 
-    public List<Commit> getCommits(String owner, String repo) {
-        String uri = BASE_URL + owner + "/" + repo + "/commits";
+    public List<Commit> getAllCommits(String workspace, String repo_slug) {
+        String uri = BASE_URL + workspace + "/" + repo_slug + "/commits";
         Commit[] commits = restTemplate.getForObject(uri, Commit[].class);
         if (commits != null) {
             return Arrays.stream(commits).toList();
@@ -27,8 +27,8 @@ public class GitHubService {
         return Collections.emptyList();
     }
 
-    public List<Issue> getIssues(String owner, String repo) {
-        String uri = BASE_URL + owner + "/" + repo + "/issues";
+    public List<Issue> getAllIssues(String workspace, String repo_slug) {
+        String uri = BASE_URL + workspace + "/" + repo_slug + "/issues";
         Issue[] issues = restTemplate.getForObject(uri, Issue[].class);
         if (issues != null) {
             return Arrays.stream(issues).toList();
