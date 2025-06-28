@@ -39,7 +39,15 @@ public class CommentService {
                 comment.setUpdatedAt(bc.getUpdatedOn());
 
                 if (bc.getUser() != null) {
-                    User user = getUser(bc);
+                    User bitbucketUser = bc.getUser();
+
+                    User user = new User();
+                    user.setId(bitbucketUser.getId() != null ? bitbucketUser.getId() : bitbucketUser.getUsername());
+                    user.setUsername(bitbucketUser.getUsername());
+                    user.setDisplayName(bitbucketUser.getDisplayName());
+                    user.setName(bitbucketUser.getName());
+                    user.setAvatarUrl(bitbucketUser.getAvatarUrl());
+                    user.setWebUrl(bitbucketUser.getWebUrl());
 
                     comment.setAuthor(user);
                 }
@@ -50,19 +58,6 @@ public class CommentService {
         }
 
         return Collections.emptyList();
-    }
-
-    private static User getUser(IssueComments bc) {
-        User bitbucketUser = bc.getUser();
-
-        User user = new User();
-        user.setId(bitbucketUser.getId() != null ? bitbucketUser.getId() : bitbucketUser.getUsername());
-        user.setUsername(bitbucketUser.getUsername());
-        user.setDisplayName(bitbucketUser.getDisplayName());
-        user.setName(bitbucketUser.getName());
-        user.setAvatarUrl(bitbucketUser.getAvatarUrl());
-        user.setWebUrl(bitbucketUser.getWebUrl());
-        return user;
     }
 
     public Comment getCommentFromIssueById(String workspace, String repoSlug, String issueId, String commentId) {

@@ -1,14 +1,9 @@
 package aiss.bitbucket.service;
 
 import aiss.bitbucket.model.Project;
-import aiss.bitbucket.service.CommitService;
-import aiss.bitbucket.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProjectService {
@@ -27,8 +22,8 @@ public class ProjectService {
         project.setId(workspace + "/" + repo_slug);
         project.setName(repo_slug);
         project.setWebUrl(uri);
-        project.setCommits(commitService.getAllCommits(workspace, repo_slug));
-        project.setIssues(issueService.getAllIssues(workspace, repo_slug));
+        project.setCommits(commitService.getAllCommits(workspace, repo_slug, 5, 2));
+        project.setIssues(issueService.getAllIssues(workspace, repo_slug, 5, 2));
 
         projects.add(project);
         return projects;
