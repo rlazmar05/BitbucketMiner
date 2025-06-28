@@ -17,9 +17,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "self",
         "html",
         "comments",
-        "attachments",
-        "watch",
-        "vote"
 })
 public class Links {
 
@@ -29,12 +26,7 @@ public class Links {
     private Html html;
     @JsonProperty("comments")
     private Comment comments;
-    @JsonProperty("attachments")
-    private Attachments attachments;
-    @JsonProperty("watch")
-    private Watch watch;
-    @JsonProperty("vote")
-    private Vote vote;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -68,36 +60,6 @@ public class Links {
         this.comments = comments;
     }
 
-    @JsonProperty("attachments")
-    public Attachments getAttachments() {
-        return attachments;
-    }
-
-    @JsonProperty("attachments")
-    public void setAttachments(Attachments attachments) {
-        this.attachments = attachments;
-    }
-
-    @JsonProperty("watch")
-    public Watch getWatch() {
-        return watch;
-    }
-
-    @JsonProperty("watch")
-    public void setWatch(Watch watch) {
-        this.watch = watch;
-    }
-
-    @JsonProperty("vote")
-    public Vote getVote() {
-        return vote;
-    }
-
-    @JsonProperty("vote")
-    public void setVote(Vote vote) {
-        this.vote = vote;
-    }
-
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -123,18 +85,6 @@ public class Links {
         sb.append("comments");
         sb.append('=');
         sb.append(((this.comments == null)?"<null>":this.comments));
-        sb.append(',');
-        sb.append("attachments");
-        sb.append('=');
-        sb.append(((this.attachments == null)?"<null>":this.attachments));
-        sb.append(',');
-        sb.append("watch");
-        sb.append('=');
-        sb.append(((this.watch == null)?"<null>":this.watch));
-        sb.append(',');
-        sb.append("vote");
-        sb.append('=');
-        sb.append(((this.vote == null)?"<null>":this.vote));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');

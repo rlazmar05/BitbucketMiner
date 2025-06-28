@@ -9,9 +9,7 @@ import com.fasterxml.jackson.annotation.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "rendered",
         "hash",
-        "repository",
         "links",
         "author",
         "summary",
@@ -23,12 +21,8 @@ import com.fasterxml.jackson.annotation.*;
 })
 public class AllCommits {
 
-    @JsonProperty("rendered")
-    private Rendered rendered;
     @JsonProperty("hash")
     private String hash;
-    @JsonProperty("repository")
-    private Repository repository;
     @JsonProperty("links")
     private Links links;
     @JsonProperty("author")
@@ -48,16 +42,6 @@ public class AllCommits {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("rendered")
-    public Rendered getRendered() {
-        return rendered;
-    }
-
-    @JsonProperty("rendered")
-    public void setRendered(Rendered rendered) {
-        this.rendered = rendered;
-    }
-
     @JsonProperty("hash")
     public String getHash() {
         return hash;
@@ -66,16 +50,6 @@ public class AllCommits {
     @JsonProperty("hash")
     public void setHash(String hash) {
         this.hash = hash;
-    }
-
-    @JsonProperty("repository")
-    public Repository getRepository() {
-        return repository;
-    }
-
-    @JsonProperty("repository")
-    public void setRepository(Repository repository) {
-        this.repository = repository;
     }
 
     @JsonProperty("links")
@@ -172,17 +146,9 @@ public class AllCommits {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(AllCommits.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("rendered");
-        sb.append('=');
-        sb.append(((this.rendered == null)?"<null>":this.rendered));
-        sb.append(',');
         sb.append("hash");
         sb.append('=');
         sb.append(((this.hash == null)?"<null>":this.hash));
-        sb.append(',');
-        sb.append("repository");
-        sb.append('=');
-        sb.append(((this.repository == null)?"<null>":this.repository));
         sb.append(',');
         sb.append("links");
         sb.append('=');

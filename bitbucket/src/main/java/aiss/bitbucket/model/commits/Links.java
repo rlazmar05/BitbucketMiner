@@ -2,6 +2,8 @@ package aiss.bitbucket.model.commits;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import aiss.bitbucket.model.issues.Self;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
         "self",
         "html",
-        "avatar"
 })
 public class Links {
 
@@ -21,8 +22,7 @@ public class Links {
     private Self self;
     @JsonProperty("html")
     private Html html;
-    @JsonProperty("avatar")
-    private Avatar avatar;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -46,16 +46,6 @@ public class Links {
         this.html = html;
     }
 
-    @JsonProperty("avatar")
-    public Avatar getAvatar() {
-        return avatar;
-    }
-
-    @JsonProperty("avatar")
-    public void setAvatar(Avatar avatar) {
-        this.avatar = avatar;
-    }
-
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -77,10 +67,6 @@ public class Links {
         sb.append("html");
         sb.append('=');
         sb.append(((this.html == null)?"<null>":this.html));
-        sb.append(',');
-        sb.append("avatar");
-        sb.append('=');
-        sb.append(((this.avatar == null)?"<null>":this.avatar));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
