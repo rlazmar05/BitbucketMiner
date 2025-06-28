@@ -19,7 +19,13 @@ public class BitbucketMinerController {
     private BitbucketService bitbucketService;
 
     @Autowired
-    private GitHubService gitHubService;
+    private CommitService commitService;
+
+    @Autowired
+    private IssueService issueService;
+
+    @Autowired
+    private GitMinerService gitMinerService;
 
     @Autowired
     private CommitService commitService;
@@ -38,7 +44,7 @@ public class BitbucketMinerController {
         List<Commit> commits = commitService.getAllCommits(workspace, repo_slug, nCommits, maxPages);
         List<Issue> issues = issueService.getAllIssues(workspace, repo_slug, nIssues, maxPages);
 
-        bitbucketService.sendDataToGitMiner(commits, issues);
+        gitMinerService.sendDataToGitMiner(commits, issues);
 
         return "Datos enviados correctamente a GitMiner desde Bitbucket";
     }
