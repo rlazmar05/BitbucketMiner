@@ -3,7 +3,6 @@ package aiss.bitbucket.controllers;
 import aiss.bitbucket.model.commits.Commit;
 import aiss.bitbucket.model.issues.Issue;
 import aiss.bitbucket.service.*;
-import aiss.bitbucket.service.GitHubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
