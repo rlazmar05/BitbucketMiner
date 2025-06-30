@@ -1,11 +1,12 @@
 package aiss.bitbucket.model.commits;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 
 import java.util.List;
 
-@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Commit {
 
     @JsonProperty("id")

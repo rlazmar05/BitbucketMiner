@@ -1,5 +1,6 @@
 package aiss.bitbucket.controllers;
 
+import aiss.bitbucket.BitbucketApplication;
 import aiss.bitbucket.model.commits.Commit;
 import aiss.bitbucket.model.issues.Issue;
 import aiss.bitbucket.service.*;
@@ -17,7 +18,7 @@ import java.util.Map;
 public class BitbucketMinerController {
 
     @Autowired
-    private BitBucketService bitBucketService;
+    private BitBucketService bitbucketService;
 
     @Autowired
     private CommitService commitService;

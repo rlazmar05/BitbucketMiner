@@ -43,8 +43,9 @@ public class IssueService {
 
                 issues.add(issue);
 
-                if (issues.size() >= nIssues)
+                if (issues.size() >= nIssues) {
                     break;
+                }
             }
         }
 

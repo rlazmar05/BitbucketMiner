@@ -59,8 +59,9 @@ public class CommitService {
 
                 commits.add(commit);
 
-                if (commits.size() >= nCommits)
+                if (commits.size() >= nCommits) {
                     break;
+                }
             }
         }
 
